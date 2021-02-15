@@ -11,10 +11,12 @@ import Firebase
 
 class ExpenseViewModel: ObservableObject {
     @Published var expenses = [Expense]()
-    
-    
+ //  @Published var orderBasket: OrderBasket!
+
     var name : String = ""
     var price : Double = 0.0
+    var price2 : String = ""
+
     var description: String = ""
     var image: String = ""
     var images: String = ""
@@ -23,6 +25,22 @@ class ExpenseViewModel: ObservableObject {
     var category : String = ""
     var sku : String = ""
     var releaseDate : String = ""
+    
+    
+    
+    
+   var expense: [Expense] = []
+
+    var total: Double {
+        if expense.count > 0 {
+            return expense.reduce(0) { $0 + $1.price }
+        } else {
+            return 0.1
+        }
+    }
+
+    
+    
     
     
     init() {
@@ -47,7 +65,21 @@ class ExpenseViewModel: ObservableObject {
                     let user = User(dictionary: data)
                     self.expenses.append(Expense(user: user, dictionary: messageData))
                     self.expenses.sort(by: { $0.timestamp.dateValue() < $1.timestamp.dateValue() })
+                    
+//                   // self.expense.reduce(0) { $0 + $1.price }
+//
+//                    var total: Double {
+//                        if self.expense.count > 0 {
+//                            return self.expense.reduce(0) { $0 + $1.price }
+//                        } else {
+//                            return 0.1
+//                        }
+//                    }
+//                    print("DEBUG : TOTAL -- \(total)")
+
                 }
+               // return total
+
             }
         }
     }
@@ -69,6 +101,7 @@ class ExpenseViewModel: ObservableObject {
         
         let data: [String: Any] = [ "name" : name,
                                     "price" : price,
+                                    "price2" : price2,
                                     "description": description,
                                     "image": image,
                                     "tags": tags,
@@ -114,6 +147,8 @@ class ExpenseViewModel: ObservableObject {
         let data: [String: Any] = [
             "name" : "Air Jordan 13 Retro 'Starfish'",
             "price" : 553.70,
+            "price2" : "553.70",
+            
             "description": "The Air Jordan 13 Retro ‘Starfish’ features a familiar color palette that recalls the ‘Shattered Backboard’ editions of the Air Jordan 1. The upper combines a white tumbled leather base with orange suede paneling and signature dimpled overlays in more white leather. Traditional branding elements include an embroidered Jumpman atop the tongue and the 13's holographic eye on the lateral ankle. A contrasting black finish is applied to the panther-paw outsole.",
             "image": "660244_01",
             "tags": ["2020", "Our Favorites", "Just Dropped" ],
@@ -164,6 +199,7 @@ class ExpenseViewModel: ObservableObject {
         let data: [String: Any] = [
             "name" : "Air Jordan 13 Retro 'Starfish'",
             "price" : 553.70,
+            "price2" : "553.70",
             "description": "The Air Jordan 13 Retro ‘Starfish’ features a familiar color palette that recalls the ‘Shattered Backboard’ editions of the Air Jordan 1. The upper combines a white tumbled leather base with orange suede paneling and signature dimpled overlays in more white leather. Traditional branding elements include an embroidered Jumpman atop the tongue and the 13's holographic eye on the lateral ankle. A contrasting black finish is applied to the panther-paw outsole.",
             "image": "660244_01",
             "tags": ["2020", "Our Favorites", "Just Dropped" ],
@@ -186,6 +222,7 @@ class ExpenseViewModel: ObservableObject {
         let data1: [String: Any] = [
             "name" : "Air Jordan 1 Retro High OG 'Volt Gold'",
             "price" : 353.70,
+            "price2" : "553.70",
             "description": "The Air Jordan 13 Retro ‘Starfish’ features a familiar color palette that recalls the ‘Shattered Backboard’ editions of the Air Jordan 1. The upper combines a white tumbled leather base with orange suede paneling and signature dimpled overlays in more white leather. Traditional branding elements include an embroidered Jumpman atop the tongue and the 13's holographic eye on the lateral ankle. A contrasting black finish is applied to the panther-paw outsole.",
             "image": "602213_01",
             "tags": ["2020", "Our Favorites", "Just Dropped" ],
@@ -226,6 +263,7 @@ class ExpenseViewModel: ObservableObject {
         p_ID : String,
         name : String,
         price : Double,
+        price2 : String,
         description : String,
         image : String,
         tags : [String],
@@ -244,6 +282,7 @@ class ExpenseViewModel: ObservableObject {
             
             "name" : name,
             "price" : price,
+            "price2" : price2,
             "description": description,
             "image": image,
             "tags": tags,

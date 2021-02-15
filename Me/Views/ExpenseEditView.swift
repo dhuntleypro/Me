@@ -15,13 +15,17 @@ struct ExpenseEditView: View {
     @ObservedObject private var expenseVM = ExpenseViewModel()
     
     //  @State var showUpdatedAlert = false
+    var expense : Expense
     
+    @State  var showingAlert = false
     let user : User
     
     // main variant
     @State var expenseID = ""
     @State var name : String = ""
     @State var price : Double = 0.0
+    @State var price2 : String = ""
+    
     
     @State var description: String = ""
     @State var image: String = ""
@@ -108,6 +112,7 @@ struct ExpenseEditView: View {
                     p_ID: expenseID,
                     name: name,
                     price: price,
+                    price2: price2,
                     description: description,
                     image: image,
                     tags: tags,
@@ -122,6 +127,9 @@ struct ExpenseEditView: View {
             }
             .modifier(myFullButtonAdjustable(bgColor: .black))
             
+            
+         //   OrderButton(showingAlert: $showingAlert, expense: expense)
+
             Spacer()
             
         }

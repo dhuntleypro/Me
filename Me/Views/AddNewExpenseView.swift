@@ -137,7 +137,7 @@ struct AddNewExpenseView: View {
                     
                     HStack {
                         Text("Price :")
-                        TextField("Price", text: $viewModel.price)
+                        TextField("Price", text: $viewModel.price2)
                             .textFieldStyle(PlainTextFieldStyle())
                             .frame(minHeight: 30)
                     }
