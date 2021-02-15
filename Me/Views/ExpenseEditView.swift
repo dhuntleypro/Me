@@ -25,7 +25,8 @@ struct ExpenseEditView: View {
     @State var name : String = ""
     @State var price : Double = 0.0
     @State var price2 : String = ""
-    
+    @State var cost : NSNumber = 0
+
     
     @State var description: String = ""
     @State var image: String = ""
@@ -113,6 +114,7 @@ struct ExpenseEditView: View {
                     name: name,
                     price: price,
                     price2: price2,
+                    cost: cost,
                     description: description,
                     image: image,
                     tags: tags,
@@ -129,13 +131,7 @@ struct ExpenseEditView: View {
             }
             .modifier(myFullButtonAdjustable(bgColor: .black))
             
-            Button(action: {
-                self.expenseVM.addToCart(expense: expense)
-                
-            }) {
-                Text(expense.isAdded ? "Added to Cart" : "Add to Cart")
-            }
-            
+           
          //   OrderButton(showingAlert: $showingAlert, expense: expense)
 
             Spacer()

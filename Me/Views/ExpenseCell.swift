@@ -46,13 +46,15 @@ struct ExpenseCell: View {
                    expenseVM.addToCart(expense: expense)
 
                 }) {
-                    Image(systemName: "cart.fill")
+                    Image(systemName: expense.isAdded ? "checkmark" : "cart.fill")
                 }
                 
                 Text("$\(expense.price2)")
                     .font(.system(size: 16))
                     .bold()
                     .padding(.trailing, 10)
+                
+               
             
             }
             .padding()

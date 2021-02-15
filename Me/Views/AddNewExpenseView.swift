@@ -136,29 +136,21 @@ struct AddNewExpenseView: View {
                     
                     
                     HStack {
-                        Text("Price :")
-                        TextField("Price", text: $viewModel.price2)
+                        Text("Price2 :")
+                        TextField("Price2", text: $viewModel.price2)
                             .textFieldStyle(PlainTextFieldStyle())
                             .frame(minHeight: 30)
                     }
                     Divider()
-                    
-                    HStack {
-                        Text("Category :")
-                        TextField("Category ", text: $viewModel.category)
-                            .textFieldStyle(PlainTextFieldStyle())
-                            .frame(minHeight: 30)
-                    }
-                    Divider()
-                    
-                    
-                    HStack {
-                        Text("Release Date :")
-                        TextField("Release Date ", text: $viewModel.releaseDate)
-                            .textFieldStyle(PlainTextFieldStyle())
-                            .frame(minHeight: 30)
-                    }
-                    Divider()
+
+                   
+//                    HStack {
+//                        Text("Cost :")
+//                        TextField("Cost", text: $viewModel.expense.cost)
+//                            .textFieldStyle(PlainTextFieldStyle())
+//                            .frame(minHeight: 30)
+//                    }
+//                    Divider()
                 }
                 Group {
                     VStack {

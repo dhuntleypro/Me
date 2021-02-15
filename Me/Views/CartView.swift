@@ -16,8 +16,11 @@ struct CartView: View {
         VStack {
             
             ForEach(expenseVM.cartExpenses) { expense in
+                HStack {
+                    Text(expense.expense.name)
+                    Text("\(expense.expense.cost)")
+                }
                 
-                Text(expense.expense.name)
             }
             
             Text("Monthly Expense Total : \(expenseVM.calculatorTotalPrice())")

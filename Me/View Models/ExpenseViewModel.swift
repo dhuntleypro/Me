@@ -21,7 +21,7 @@ class ExpenseViewModel: ObservableObject {
     var name : String = ""
     var price : Double = 0.0
     var price2 : String = ""
-
+    var cost : NSNumber = 0
     var description: String = ""
     var image: String = ""
     var images: String = ""
@@ -175,6 +175,7 @@ class ExpenseViewModel: ObservableObject {
         let data: [String: Any] = [ "name" : name,
                                     "price" : price,
                                     "price2" : price2,
+                                    "cost" : cost,
                                     "description": description,
                                     "image": image,
                                     "tags": tags,
@@ -221,7 +222,8 @@ class ExpenseViewModel: ObservableObject {
             "name" : "Air Jordan 13 Retro 'Starfish'",
             "price" : 553.70,
             "price2" : "553.70",
-            
+            "cost" : 44,
+
             "description": "The Air Jordan 13 Retro ‘Starfish’ features a familiar color palette that recalls the ‘Shattered Backboard’ editions of the Air Jordan 1. The upper combines a white tumbled leather base with orange suede paneling and signature dimpled overlays in more white leather. Traditional branding elements include an embroidered Jumpman atop the tongue and the 13's holographic eye on the lateral ankle. A contrasting black finish is applied to the panther-paw outsole.",
             "image": "660244_01",
             "tags": ["2020", "Our Favorites", "Just Dropped" ],
@@ -273,6 +275,8 @@ class ExpenseViewModel: ObservableObject {
             "name" : "Air Jordan 13 Retro 'Starfish'",
             "price" : 553.70,
             "price2" : "553.70",
+            "cost" : 44,
+
             "description": "The Air Jordan 13 Retro ‘Starfish’ features a familiar color palette that recalls the ‘Shattered Backboard’ editions of the Air Jordan 1. The upper combines a white tumbled leather base with orange suede paneling and signature dimpled overlays in more white leather. Traditional branding elements include an embroidered Jumpman atop the tongue and the 13's holographic eye on the lateral ankle. A contrasting black finish is applied to the panther-paw outsole.",
             "image": "660244_01",
             "tags": ["2020", "Our Favorites", "Just Dropped" ],
@@ -296,6 +300,8 @@ class ExpenseViewModel: ObservableObject {
             "name" : "Air Jordan 1 Retro High OG 'Volt Gold'",
             "price" : 353.70,
             "price2" : "553.70",
+            "cost" : 44,
+
             "description": "The Air Jordan 13 Retro ‘Starfish’ features a familiar color palette that recalls the ‘Shattered Backboard’ editions of the Air Jordan 1. The upper combines a white tumbled leather base with orange suede paneling and signature dimpled overlays in more white leather. Traditional branding elements include an embroidered Jumpman atop the tongue and the 13's holographic eye on the lateral ankle. A contrasting black finish is applied to the panther-paw outsole.",
             "image": "602213_01",
             "tags": ["2020", "Our Favorites", "Just Dropped" ],
@@ -337,6 +343,7 @@ class ExpenseViewModel: ObservableObject {
         name : String,
         price : Double,
         price2 : String,
+        cost: NSNumber,
         description : String,
         image : String,
         tags : [String],
@@ -356,6 +363,8 @@ class ExpenseViewModel: ObservableObject {
             "name" : name,
             "price" : price,
             "price2" : price2,
+            "cost" : cost,
+
             "description": description,
             "image": image,
             "tags": tags,
