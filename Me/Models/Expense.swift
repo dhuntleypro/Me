@@ -12,6 +12,10 @@ struct Expense : Identifiable {
     let name : String
     let price : Double
     let price2 : String
+    
+    var cost : NSNumber
+    var isAdded : Bool // added to cart ?
+    
     let description : String
     var tags: [String]
     let brand : String
@@ -37,6 +41,9 @@ struct Expense : Identifiable {
         self.name = dictionary["name"] as? String ?? ""
         self.price = dictionary["price"] as? Double ?? 0.0
         self.price2 = dictionary["price2"] as? String ?? ""
+        self.cost = dictionary["cost"] as? NSNumber ?? 0
+        self.isAdded = dictionary["isAdded"] as? Bool ?? false
+
         self.description = dictionary["description"] as? String ?? ""
         self.tags = dictionary["tags"] as? [String] ?? [""]
         self.brand = dictionary["brand"] as? String ?? ""

@@ -122,11 +122,19 @@ struct ExpenseEditView: View {
                     releaseDate: releaseDate
                 )
                 
+               
+                
             }) {
                 Text("Update")
             }
             .modifier(myFullButtonAdjustable(bgColor: .black))
             
+            Button(action: {
+                self.expenseVM.addToCart(expense: expense)
+                
+            }) {
+                Text(expense.isAdded ? "Added to Cart" : "Add to Cart")
+            }
             
          //   OrderButton(showingAlert: $showingAlert, expense: expense)
 

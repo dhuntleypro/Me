@@ -11,7 +11,12 @@ import Firebase
 
 class ExpenseViewModel: ObservableObject {
     @Published var expenses = [Expense]()
- //  @Published var orderBasket: OrderBasket!
+    
+    
+    @Published var expenses2 : [Expense] = []
+
+    // Cart Data
+  @Published var cartExpenses: [Cart] = []
 
     var name : String = ""
     var price : Double = 0.0
@@ -28,24 +33,104 @@ class ExpenseViewModel: ObservableObject {
     
     
     
-    
-   var expense: [Expense] = []
-
-    var total: Double {
-        if expense.count > 0 {
-            return expense.reduce(0) { $0 + $1.price }
-        } else {
-            return 0.1
-        }
-    }
-
-    
+//
+//   var expense: [Expense] = []
+//
+//    var total: Double {
+//        if expense.count > 0 {
+//            return expense.reduce(0) { $0 + $1.price }
+//        } else {
+//            return 0.1
+//        }
+//    }
+//
+//
+//
+//
     
     
     
     init() {
         fetchExpenses()
     }
+    
+    
+    
+    
+    
+    func addToCart(expense: Expense) {
+        
+        // check if its added ....
+        
+        self.expenses[getIndex(expense: expense, isCartIndex: false)].isAdded = expense.isAdded
+        
+//        self.filtered[getIndex(expense: expense, isCartIndex: false)].isAdded = !expense.isAdded
+
+        if expense.isAdded {
+            
+            // remove from list....
+            self.cartExpenses.remove(at: getIndex(expense: expense, isCartIndex: true))
+
+            return
+        }
+        // else adding
+        self.cartExpenses.append(Cart(expense: expense, quantity: 1))
+    }
+    
+    func getIndex(expense : Expense, isCartIndex : Bool) -> Int {
+        let index = self.expenses.firstIndex { item1 -> Bool in
+            return expense.id == item1.id
+        } ?? 0
+        
+        let cartIndex = self.cartExpenses.firstIndex { item1 -> Bool in
+            return expense.id == item1.expense.id
+
+        } ?? 0
+        
+        return isCartIndex ? cartIndex : index
+    }
+    
+    
+    func calculatorTotalPrice() -> String {
+        var price : Float = 0.1
+        
+        cartExpenses.forEach { expense in
+            price += Float(expense.quantity) * Float(truncating: expense.expense.cost)
+        }
+        
+        return getPrice(value : price)
+    }
+    
+    func getPrice(value: Float) -> String {
+        let format = NumberFormatter()
+        
+        format.numberStyle = .currency
+        
+        return format.string(from: NSNumber(value: value)) ?? ""
+    }
+    
+    
+     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     func fetchExpenses() {
         guard let currentUid = AuthViewModel.shared.userSession?.uid else { return }
@@ -65,21 +150,9 @@ class ExpenseViewModel: ObservableObject {
                     let user = User(dictionary: data)
                     self.expenses.append(Expense(user: user, dictionary: messageData))
                     self.expenses.sort(by: { $0.timestamp.dateValue() < $1.timestamp.dateValue() })
-                    
-//                   // self.expense.reduce(0) { $0 + $1.price }
-//
-//                    var total: Double {
-//                        if self.expense.count > 0 {
-//                            return self.expense.reduce(0) { $0 + $1.price }
-//                        } else {
-//                            return 0.1
-//                        }
-//                    }
-//                    print("DEBUG : TOTAL -- \(total)")
+                 
 
                 }
-               // return total
-
             }
         }
     }

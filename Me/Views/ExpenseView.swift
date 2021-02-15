@@ -40,8 +40,8 @@ struct ExpenseView: View {
                         .font(.title)
                         .bold()
                     
-//                    Text("Monthly Expense Total : \(totalPrice)")
-//                        .font(.system(size: 13))
+                    Text("Monthly Expense Total : \(expenseVM.calculatorTotalPrice())")
+                        .font(.system(size: 13))
                 }
                 
                 Spacer()
@@ -91,7 +91,7 @@ struct ExpenseView: View {
                             
                             
                         )) {
-                            ExpenseCell(expense: expense)
+                            ExpenseCell(expenseVM: expenseVM, expense: expense)
                             
                         }
                     }
@@ -107,7 +107,7 @@ struct ExpenseView: View {
                     Text("Active")
                 })
                     .sheet(isPresented: $showingBasket) {
-                    //    OrderBasketView()
+                        CartView(expenseVM: expenseVM)
 
                 }
         )

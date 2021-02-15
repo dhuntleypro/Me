@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExpenseCell: View {
-    
+    @ObservedObject var expenseVM : ExpenseViewModel
     var expense : Expense
     
     @State  var showingAlert = false
@@ -41,6 +41,13 @@ struct ExpenseCell: View {
                 }
                 
                 Spacer()
+                
+                Button(action: {
+                   expenseVM.addToCart(expense: expense)
+
+                }) {
+                    Image(systemName: "cart.fill")
+                }
                 
                 Text("$\(expense.price2)")
                     .font(.system(size: 16))
